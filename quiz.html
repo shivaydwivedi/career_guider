@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Assessment Quiz - Career Guider</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-compass"></i>
+                Career Guider
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quiz.html">Take Quiz</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Quiz Container -->
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <h1>Career Assessment Quiz</h1>
+            <p>Answer these questions honestly to get the best career recommendations for you. This should take about 5
+                minutes.</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+
+        <form id="career-quiz">
+            <!-- Question 1 -->
+            <div class="question active" data-question="1">
+                <h3>1. What type of subjects did you enjoy most in school?</h3>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q1" value="science" id="q1_science">
+                        <label for="q1_science">Science & Mathematics (Physics, Chemistry, Math)</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q1" value="commerce" id="q1_commerce">
+                        <label for="q1_commerce">Commerce & Business Studies (Accounts, Economics)</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q1" value="arts" id="q1_arts">
+                        <label for="q1_arts">Arts & Humanities (History, Literature, Psychology)</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q1" value="creative" id="q1_creative">
+                        <label for="q1_creative">Creative Subjects (Art, Music, Drama)</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question" data-question="2">
+                <h3>2. Which activity sounds most appealing to you?</h3>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q2" value="problem_solving" id="q2_problem">
+                        <label for="q2_problem">Solving complex problems and puzzles</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2" value="helping_others" id="q2_helping">
+                        <label for="q2_helping">Helping and caring for others</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2" value="creating" id="q2_creating">
+                        <label for="q2_creating">Creating and designing new things</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2" value="leading" id="q2_leading">
+                        <label for="q2_leading">Leading teams and making strategic decisions</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question" data-question="3">
+                <h3>3. What type of work environment do you prefer?</h3>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q3" value="office" id="q3_office">
+                        <label for="q3_office">Modern office with latest technology</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q3" value="hospital" id="q3_hospital">
+                        <label for="q3_hospital">Hospital or healthcare facility</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q3" value="creative_studio" id="q3_studio">
+                        <label for="q3_studio">Creative studio or workshop</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q3" value="outdoor" id="q3_outdoor">
+                        <label for="q3_outdoor">Outdoor or field-based work</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question" data-question="4">
+                <h3>4. What motivates you the most in your future career?</h3>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q4" value="innovation" id="q4_innovation">
+                        <label for="q4_innovation">Innovation and technological advancement</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q4" value="service" id="q4_service">
+                        <label for="q4_service">Serving society and making a difference</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q4" value="financial" id="q4_financial">
+                        <label for="q4_financial">Financial success and business growth</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q4" value="expression" id="q4_expression">
+                        <label for="q4_expression">Creative expression and artistic fulfillment</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question" data-question="5">
+                <h3>5. Which skills do you feel are your strongest?</h3>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q5" value="analytical" id="q5_analytical">
+                        <label for="q5_analytical">Analytical thinking and logical reasoning</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q5" value="interpersonal" id="q5_interpersonal">
+                        <label for="q5_interpersonal">Communication and interpersonal skills</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q5" value="creative" id="q5_creative">
+                        <label for="q5_creative">Creativity and artistic abilities</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q5" value="leadership" id="q5_leadership">
+                        <label for="q5_leadership">Leadership and management abilities</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="quiz-navigation">
+            <button type="button" class="btn btn-secondary" id="prev-btn" onclick="previousQuestion()"
+                style="display: none;">
+                <i class="fas fa-arrow-left"></i> Previous
+            </button>
+            <div id="question-counter">Question 1 of 5</div>
+            <button type="button" class="btn btn-primary" id="next-btn" onclick="nextQuestion()">
+                Next <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Career Guider</h3>
+                    <p>Empowering students to make informed career decisions through comprehensive assessments and
+                        expert guidance.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="quiz.html">Career Quiz</a>
+                    <a href="results.html">Sample Results</a>
+                    <a href="#about">About Us</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-envelope"></i> info@careerguider.com</p>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Career Guider. All rights reserved. Made with ❤️ for students.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

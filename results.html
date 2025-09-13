@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Career Recommendations - Career Guider</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-compass"></i>
+                Career Guider
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quiz.html">Take Quiz</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Results Container -->
+    <div class="results-container">
+        <div class="results-header">
+            <h1>Your Career Recommendations</h1>
+            <p>Based on your responses, here are the careers that match your profile. Click on any career to learn more!
+            </p>
+        </div>
+
+        <!-- Career Cards Container -->
+        <div class="career-cards" id="career-results">
+            <!-- Default sample results - will be replaced by JavaScript -->
+            <div class="career-card" onclick="showCareerDetails('Software Engineering')">
+                <div class="match-percentage">95% Match</div>
+                <h3>Software Engineering</h3>
+                <p>Design, develop, and maintain software applications that power our digital world. Perfect for
+                    analytical minds who love problem-solving.</p>
+                <div class="career-tags">
+                    <span class="tag">Technology</span>
+                    <span class="tag">Problem Solving</span>
+                    <span class="tag">High Salary</span>
+                    <span class="tag">Remote Work</span>
+                </div>
+                <button class="btn btn-primary">
+                    Learn More <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="career-card" onclick="showCareerDetails('Data Science')">
+                <div class="match-percentage">88% Match</div>
+                <h3>Data Science</h3>
+                <p>Extract insights from data to drive business decisions. Combine statistics, programming, and domain
+                    expertise.</p>
+                <div class="career-tags">
+                    <span class="tag">Analytics</span>
+                    <span class="tag">AI/ML</span>
+                    <span class="tag">Research</span>
+                    <span class="tag">Innovation</span>
+                </div>
+                <button class="btn btn-primary">
+                    Learn More <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="career-card" onclick="showCareerDetails('Computer Engineering')">
+                <div class="match-percentage">82% Match</div>
+                <h3>Computer Engineering</h3>
+                <p>Design and develop computer hardware and software systems. Bridge the gap between electrical
+                    engineering and computer science.</p>
+                <div class="career-tags">
+                    <span class="tag">Hardware</span>
+                    <span class="tag">Systems</span>
+                    <span class="tag">Innovation</span>
+                    <span class="tag">Technical</span>
+                </div>
+                <button class="btn btn-primary">
+                    Learn More <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="career-card" onclick="showCareerDetails('Cybersecurity')">
+                <div class="match-percentage">78% Match</div>
+                <h3>Cybersecurity</h3>
+                <p>Protect organizations from cyber threats and ensure data security. Growing field with excellent
+                    career prospects.</p>
+                <div class="career-tags">
+                    <span class="tag">Security</span>
+                    <span class="tag">Ethical Hacking</span>
+                    <span class="tag">High Demand</span>
+                    <span class="tag">Critical</span>
+                </div>
+                <button class="btn btn-primary">
+                    Learn More <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="career-card" onclick="showCareerDetails('Product Management')">
+                <div class="match-percentage">75% Match</div>
+                <h3>Product Management</h3>
+                <p>Guide product development from conception to launch. Combine business strategy with technical
+                    understanding.</p>
+                <div class="career-tags">
+                    <span class="tag">Strategy</span>
+                    <span class="tag">Leadership</span>
+                    <span class="tag">Communication</span>
+                    <span class="tag">Business</span>
+                </div>
+                <button class="btn btn-primary">
+                    Learn More <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="career-card" onclick="showCareerDetails('AI/ML Engineering')">
+                <div class="match-percentage">72% Match</div>
+                <h3>AI/ML Engineering</h3>
+                <p>Build intelligent systems and machine learning models. Work on cutting-edge technology that shapes
+                    the future.</p>
+                <div class="career-tags">
+                    <span class="tag">Artificial Intelligence</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Future Tech</span>
+                    <span class="tag">Research</span>
+                </div>
+                <button class="btn btn-primary">
+                    Learn More <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="results-actions">
+            <div class="action-buttons">
+                <a href="quiz.html" class="btn btn-secondary">
+                    <i class="fas fa-redo"></i> Retake Quiz
+                </a>
+                <button class="btn btn-primary" onclick="downloadResults()">
+                    <i class="fas fa-download"></i> Download Results
+                </button>
+                <button class="btn btn-outline" onclick="shareResults()">
+                    <i class="fas fa-share"></i> Share Results
+                </button>
+            </div>
+        </div>
+
+        <!-- Additional Information -->
+        <div class="results-info">
+            <div class="info-card">
+                <h3><i class="fas fa-lightbulb"></i> Next Steps</h3>
+                <ul>
+                    <li>Research the recommended careers in detail</li>
+                    <li>Explore relevant college courses and programs</li>
+                    <li>Connect with professionals in your chosen field</li>
+                    <li>Consider internships or part-time opportunities</li>
+                    <li>Keep developing relevant skills through online courses</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3><i class="fas fa-question-circle"></i> Need More Help?</h3>
+                <p>Our career counselors are here to help you make the best decision for your future.</p>
+                <button class="btn btn-primary">
+                    <i class="fas fa-calendar"></i> Book Free Consultation
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Career Guider</h3>
+                    <p>Empowering students to make informed career decisions through comprehensive assessments and
+                        expert guidance.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="quiz.html">Career Quiz</a>
+                    <a href="results.html">Sample Results</a>
+                    <a href="#about">About Us</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Career Fields</h3>
+                    <a href="#">Engineering</a>
+                    <a href="#">Medicine</a>
+                    <a href="#">Commerce</a>
+                    <a href="#">Arts & Design</a>
+                    <a href="#">Science</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-envelope"></i> info@careerguider.com</p>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Career Guider. All rights reserved. Made with ❤️ for students.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
