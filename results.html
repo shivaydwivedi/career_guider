@@ -9,6 +9,8 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <!-- downloading the result feature -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 
 <body>
@@ -42,106 +44,64 @@
 
         <!-- Career Cards Container -->
         <div class="career-cards" id="career-results">
-            <!-- Default sample results - will be replaced by JavaScript -->
-            <div class="career-card" onclick="showCareerDetails('Software Engineering')">
-                <div class="match-percentage">95% Match</div>
-                <h3>Software Engineering</h3>
-                <p>Design, develop, and maintain software applications that power our digital world. Perfect for
-                    analytical minds who love problem-solving.</p>
-                <div class="career-tags">
-                    <span class="tag">Technology</span>
-                    <span class="tag">Problem Solving</span>
-                    <span class="tag">High Salary</span>
-                    <span class="tag">Remote Work</span>
-                </div>
-                <button class="btn btn-primary">
-                    Learn More <i class="fas fa-arrow-right"></i>
-                </button>
-            </div>
-
-            <div class="career-card" onclick="showCareerDetails('Data Science')">
-                <div class="match-percentage">88% Match</div>
-                <h3>Data Science</h3>
-                <p>Extract insights from data to drive business decisions. Combine statistics, programming, and domain
-                    expertise.</p>
-                <div class="career-tags">
-                    <span class="tag">Analytics</span>
-                    <span class="tag">AI/ML</span>
-                    <span class="tag">Research</span>
-                    <span class="tag">Innovation</span>
-                </div>
-                <button class="btn btn-primary">
-                    Learn More <i class="fas fa-arrow-right"></i>
-                </button>
-            </div>
-
-            <div class="career-card" onclick="showCareerDetails('Computer Engineering')">
-                <div class="match-percentage">82% Match</div>
+            <div class="career-card" data-career="Computer Engineering">
                 <h3>Computer Engineering</h3>
-                <p>Design and develop computer hardware and software systems. Bridge the gap between electrical
-                    engineering and computer science.</p>
-                <div class="career-tags">
-                    <span class="tag">Hardware</span>
-                    <span class="tag">Systems</span>
-                    <span class="tag">Innovation</span>
-                    <span class="tag">Technical</span>
-                </div>
-                <button class="btn btn-primary">
+                <div class="match-percentage">85% Match</div>
+                <p>Design and develop computer systems and components.</p>
+                <button class="btn btn-primary" onclick="showCareerDetails('Computer Engineering')">
                     Learn More <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
 
-            <div class="career-card" onclick="showCareerDetails('Cybersecurity')">
-                <div class="match-percentage">78% Match</div>
+            <div class="career-card" data-career="Software Engineering">
+                <h3>Software Engineering</h3>
+                <div class="match-percentage">90% Match</div>
+                <p>Develop and maintain software applications. Ideal for problem solvers.</p>
+                <button class="btn btn-primary" onclick="showCareerDetails('Software Engineering')">
+                    Learn More <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="career-card" data-career="Data Science">
+                <h3>Data Science</h3>
+                <div class="match-percentage">88% Match</div>
+                <p>Analyze data to provide business insights. Requires statistical and programming skills.</p>
+                <button class="btn btn-primary" onclick="showCareerDetails('Data Science')">
+                    Learn More <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="career-card" data-career="Cybersecurity">
                 <h3>Cybersecurity</h3>
-                <p>Protect organizations from cyber threats and ensure data security. Growing field with excellent
-                    career prospects.</p>
-                <div class="career-tags">
-                    <span class="tag">Security</span>
-                    <span class="tag">Ethical Hacking</span>
-                    <span class="tag">High Demand</span>
-                    <span class="tag">Critical</span>
-                </div>
-                <button class="btn btn-primary">
+                <div class="match-percentage">87% Match</div>
+                <p>Protect systems from cyber threats. Involves ethical hacking and security analysis.</p>
+                <button class="btn btn-primary" onclick="showCareerDetails('Cybersecurity')">
                     Learn More <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
 
-            <div class="career-card" onclick="showCareerDetails('Product Management')">
-                <div class="match-percentage">75% Match</div>
+            <div class="career-card" data-career="Product Management">
                 <h3>Product Management</h3>
-                <p>Guide product development from conception to launch. Combine business strategy with technical
-                    understanding.</p>
-                <div class="career-tags">
-                    <span class="tag">Strategy</span>
-                    <span class="tag">Leadership</span>
-                    <span class="tag">Communication</span>
-                    <span class="tag">Business</span>
-                </div>
-                <button class="btn btn-primary">
+                <div class="match-percentage">85% Match</div>
+                <p>Oversee product development. Requires strategic planning and communication skills.</p>
+                <button class="btn btn-primary" onclick="showCareerDetails('Product Management')">
                     Learn More <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
 
-            <div class="career-card" onclick="showCareerDetails('AI/ML Engineering')">
-                <div class="match-percentage">72% Match</div>
+            <div class="career-card" data-career="AI/ML Engineering">
                 <h3>AI/ML Engineering</h3>
-                <p>Build intelligent systems and machine learning models. Work on cutting-edge technology that shapes
-                    the future.</p>
-                <div class="career-tags">
-                    <span class="tag">Artificial Intelligence</span>
-                    <span class="tag">Machine Learning</span>
-                    <span class="tag">Future Tech</span>
-                    <span class="tag">Research</span>
-                </div>
-                <button class="btn btn-primary">
+                <div class="match-percentage">84% Match</div>
+                <p>Develop AI models and machine learning algorithms. Focus on innovative technology.</p>
+                <button class="btn btn-primary" onclick="showCareerDetails('AI/ML Engineering')">
                     Learn More <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
         </div>
 
         <!-- Action Buttons -->
-        <div class="results-actions">
+        <!-- for future reference -->
+        <!-- <div class="results-actions">
             <div class="action-buttons">
                 <a href="quiz.html" class="btn btn-secondary">
                     <i class="fas fa-redo"></i> Retake Quiz
@@ -153,7 +113,44 @@
                     <i class="fas fa-share"></i> Share Results
                 </button>
             </div>
+        </div> -->
+        <!-- test code -->
+        <div class="results-actions">
+            <div class="action-buttons">
+                <a href="quiz.html" class="btn btn-secondary">
+                    <i class="fas fa-redo"></i>
+                    <span>Retake Quiz</span>
+                </a>
+                <button class="btn btn-primary" id="downloadBtn" onclick="downloadResults()">
+                    <i class="fas fa-download"></i>
+                    <span>Download PDF</span>
+                    <div class="download-loader hidden">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                </button>
+                <div class="share-dropdown">
+                    <button class="btn btn-outline" id="shareBtn">
+                        <i class="fas fa-share-alt"></i>
+                        <span>Share Results</span>
+                    </button>
+                    <div class="share-options">
+                        <button onclick="shareViaEmail()">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                        <button onclick="shareViaWhatsApp()">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button onclick="shareViaLinkedIn()">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </button>
+                        <button onclick="copyShareLink()">
+                            <i class="fas fa-link"></i> Copy Link
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
+        <!-- test code -->
 
         <!-- Additional Information -->
         <div class="results-info">
@@ -170,9 +167,9 @@
             <div class="info-card">
                 <h3><i class="fas fa-question-circle"></i> Need More Help?</h3>
                 <p>Our career counselors are here to help you make the best decision for your future.</p>
-                <button class="btn btn-primary">
+                <a href="consultation.html" class="btn btn-primary">
                     <i class="fas fa-calendar"></i> Book Free Consultation
-                </button>
+                </a>
             </div>
         </div>
     </div>
@@ -211,8 +208,8 @@
                 <div class="footer-section">
                     <h3>Contact Info</h3>
                     <p><i class="fas fa-envelope"></i> info@careerguider.com</p>
-                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
-                    <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
+                    <p><i class="fas fa-phone"></i> +91 8299159099</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kanpur, India</p>
                 </div>
             </div>
             <div class="footer-bottom">

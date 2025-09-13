@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Consultation - Career Guider</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-compass"></i>
+                Career Guider
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quiz.html">Take Quiz</a></li>
+                <li><a href="consultation.html">Consultation</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Consultation Header -->
+    <section class="consultation-header">
+        <div class="container">
+            <div class="header-content">
+                <h1>Book Your Career Consultation</h1>
+                <p>Get personalized career guidance from our expert counselors. Schedule a one-on-one session to discuss
+                    your career goals and create a roadmap for success.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation Benefits -->
+    <section class="consultation-benefits">
+        <div class="container">
+            <h2>Why Book a Consultation?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Expert Guidance</h3>
+                    <p>Get advice from certified career counselors with 10+ years of experience in various industries.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Personalized Roadmap</h3>
+                    <p>Receive a customized career plan tailored to your interests, skills, and aspirations.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Flexible Scheduling</h3>
+                    <p>Choose from morning, afternoon, or evening slots that fit your schedule.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Online & Offline</h3>
+                    <p>Meet in person at our offices or join from anywhere via video consultation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation Packages -->
+    <section class="consultation-packages">
+        <div class="container">
+            <h2>Consultation Packages</h2>
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Basic Session</h3>
+                        <div class="price">₹999</div>
+                        <p>30 Minutes</p>
+                    </div>
+                    <div class="package-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Career Assessment Review</li>
+                            <li><i class="fas fa-check"></i> General Career Guidance</li>
+                            <li><i class="fas fa-check"></i> Q&A Session</li>
+                            <li><i class="fas fa-check"></i> Basic Action Plan</li>
+                        </ul>
+                    </div>
+                    <button class="package-btn" onclick="selectPackage('basic')">Choose Basic</button>
+                </div>
+
+                <div class="package-card featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="package-header">
+                        <h3>Comprehensive Session</h3>
+                        <div class="price">₹1,999</div>
+                        <p>60 Minutes</p>
+                    </div>
+                    <div class="package-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Detailed Career Assessment</li>
+                            <li><i class="fas fa-check"></i> Industry Insights</li>
+                            <li><i class="fas fa-check"></i> Skill Gap Analysis</li>
+                            <li><i class="fas fa-check"></i> Detailed Action Plan</li>
+                            <li><i class="fas fa-check"></i> College/Course Recommendations</li>
+                            <li><i class="fas fa-check"></i> 1-Week Email Support</li>
+                        </ul>
+                    </div>
+                    <button class="package-btn" onclick="selectPackage('comprehensive')">Choose Comprehensive</button>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Premium Mentoring</h3>
+                        <div class="price">₹4,999</div>
+                        <p>90 Minutes + Follow-ups</p>
+                    </div>
+                    <div class="package-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Everything in Comprehensive</li>
+                            <li><i class="fas fa-check"></i> Personality Assessment</li>
+                            <li><i class="fas fa-check"></i> Mock Interview Session</li>
+                            <li><i class="fas fa-check"></i> Resume Review</li>
+                            <li><i class="fas fa-check"></i> 3 Follow-up Sessions</li>
+                            <li><i class="fas fa-check"></i> 1-Month Ongoing Support</li>
+                        </ul>
+                    </div>
+                    <button class="package-btn" onclick="selectPackage('premium')">Choose Premium</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form -->
+    <!-- <section class="booking-form-section" id="booking-form">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Book Your Session</h2>
+                    <p>Fill in your details and we'll get back to you within 24 hours to confirm your appointment.</p>
+                </div>
+
+                <form id="consultation-form" class="consultation-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" min="15" max="30">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="education">Current Education Level *</label>
+                            <select id="education" name="education" required>
+                                <option value="">Select Education Level</option>
+                                <option value="12th-science">12th Grade - Science</option>
+                                <option value="12th-commerce">12th Grade - Commerce</option>
+                                <option value="12th-arts">12th Grade - Arts</option>
+                                <option value="undergraduate">Undergraduate Student</option>
+                                <option value="graduate">Graduate</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="package">Selected Package *</label>
+                            <select id="package" name="package" required>
+                                <option value="">Select Package</option>
+                                <option value="basic">Basic Session - ₹999</option>
+                                <option value="comprehensive">Comprehensive Session - ₹1,999</option>
+                                <option value="premium">Premium Mentoring - ₹4,999</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="consultationType">Consultation Type *</label>
+                            <select id="consultationType" name="consultationType" required>
+                                <option value="">Select Type</option>
+                                <option value="online">Online (Video Call)</option>
+                                <option value="offline-delhi">In-Person - Delhi Office</option>
+                                <option value="offline-mumbai">In-Person - Mumbai Office</option>
+                                <option value="offline-bangalore">In-Person - Bangalore Office</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="preferredDate">Preferred Date *</label>
+                            <input type="date" id="preferredDate" name="preferredDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="preferredTime">Preferred Time *</label>
+                            <select id="preferredTime" name="preferredTime" required>
+                                <option value="">Select Time</option>
+                                <option value="9am-11am">9:00 AM - 11:00 AM</option>
+                                <option value="11am-1pm">11:00 AM - 1:00 PM</option>
+                                <option value="2pm-4pm">2:00 PM - 4:00 PM</option>
+                                <option value="4pm-6pm">4:00 PM - 6:00 PM</option>
+                                <option value="6pm-8pm">6:00 PM - 8:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="alternateTime">Alternate Time</label>
+                            <select id="alternateTime" name="alternateTime">
+                                <option value="">Select Alternate</option>
+                                <option value="9am-11am">9:00 AM - 11:00 AM</option>
+                                <option value="11am-1pm">11:00 AM - 1:00 PM</option>
+                                <option value="2pm-4pm">2:00 PM - 4:00 PM</option>
+                                <option value="4pm-6pm">4:00 PM - 6:00 PM</option>
+                                <option value="6pm-8pm">6:00 PM - 8:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="concerns">Career Concerns/Questions</label>
+                        <textarea id="concerns" name="concerns" rows="4"
+                            placeholder="Tell us about your career concerns, specific questions, or areas where you need guidance..."></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="quizTaken">
+                            <input type="checkbox" id="quizTaken" name="quizTaken">
+                            I have taken the Career Guider quiz and would like to discuss my results
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i class="fas fa-calendar-check"></i>
+                            Book Consultation
+                        </button>
+                        <p class="form-note">
+                            <i class="fas fa-shield-alt"></i>
+                            Your information is secure and will only be used for consultation purposes.
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Test debug -->
+    <!-- Replace the booking form section with this code -->
+
+    <section class="booking-form-section" id="booking-form">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Book Your Consultation</h2>
+                    <p>Fill in your details below and we'll get back to you within 24 hours</p>
+                </div>
+
+                <form id="consultation-form" class="consultation-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="consultationType">Consultation Type *</label>
+                            <select id="consultationType" name="consultationType" required>
+                                <option value="">Select a consultation type</option>
+                                <option value="career">Career Guidance</option>
+                                <option value="education">Education Planning</option>
+                                <option value="skills">Skills Assessment</option>
+                                <option value="resume">Resume Review</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="preferredDate">Preferred Date *</label>
+                            <input type="date" id="preferredDate" name="preferredDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="message">Additional Notes</label>
+                        <textarea id="message" name="message" rows="4"
+                            placeholder="Any specific concerns or questions you'd like to discuss..."></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <span class="checkmark"></span>
+                            I agree to the Terms & Conditions and Privacy Policy
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i class="fas fa-calendar-check"></i>
+                            Book Consultation
+                        </button>
+                    </div>
+
+                    <div class="form-note">
+                        <p><i class="fas fa-lock"></i> Your information is secure and will never be shared</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Test debug -->
+
+    <!-- FAQ Section -->
+    <section class="consultation-faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How soon can I get an appointment?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We typically have availability within 2-3 business days. For urgent consultations, we offer
+                            same-day appointments subject to counselor availability.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What if I need to reschedule?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can reschedule your appointment up to 24 hours in advance without any charges. Less than
+                            24 hours notice may incur a rescheduling fee.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Are online consultations as effective as in-person?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Our online consultations are just as effective. We use professional video conferencing
+                            tools and provide the same quality of guidance and materials.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What should I prepare for the consultation?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Come with your academic records, any career assessments you've taken, and a list of questions
+                            or concerns. If you've taken our quiz, we'll review those results together.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Do you offer group consultations?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer group consultations for families or friends exploring career options together.
+                            Group rates are available - contact us for details.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Is there a refund policy?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a 100% satisfaction guarantee. If you're not satisfied with your consultation, we'll
+                            provide a full refund or complimentary follow-up session.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="consultation-testimonials">
+        <div class="container">
+            <h2>What Our Students Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The consultation helped me realize my passion for data science. The counselor provided a
+                            clear roadmap and I'm now pursuing my dream course!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Priya Sharma</h4>
+                            <span>Delhi University Student</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"I was confused between engineering and medicine. The premium mentoring package gave me
+                            clarity and confidence in my decision."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Rahul Patel</h4>
+                            <span>12th Grade Student</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The online consultation was convenient and professional. Got excellent advice on career
+                            switches and skill development."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Anjali Singh</h4>
+                            <span>Working Professional</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Career Guider</h3>
+                    <p>Empowering students to make informed career decisions through comprehensive assessments and
+                        expert guidance.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="quiz.html">Career Quiz</a>
+                    <a href="consultation.html">Book Consultation</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#">Career Assessment</a>
+                    <a href="#">Personal Counseling</a>
+                    <a href="#">College Guidance</a>
+                    <a href="#">Skill Development</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-envelope"></i> info@careerguider.com</p>
+                    <p><i class="fas fa-phone"></i> +91 8299159099</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kanpur, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Career Guider. All rights reserved. </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -338,18 +338,17 @@ document.addEventListener('DOMContentLoaded', function () {
 // Initialize quiz functionality
 function initializeQuiz() {
   currentQuestion = 1;
+  quizAnswers = {};
+  showQuestion(1);
   updateProgressBar();
   updateQuestionCounter();
-  showQuestion(1);
+  updateNavigationButtons();
 }
 
-// Show specific question
 function showQuestion(questionNum) {
   // Hide all questions
   const questions = document.querySelectorAll('.question');
-  questions.forEach(q => {
-    q.classList.remove('active');
-  });
+  questions.forEach(q => q.classList.remove('active'));
 
   // Show current question
   const currentQuestionEl = document.querySelector(`[data-question="${questionNum}"]`);
@@ -374,18 +373,55 @@ function addOptionListeners() {
 
       // Update visual feedback
       const options = e.target.closest('.question').querySelectorAll('.option');
-      options.forEach(option => {
-        option.classList.remove('selected');
-      });
+      options.forEach(option => option.classList.remove('selected'));
       e.target.closest('.option').classList.add('selected');
 
-      // Enable next button if this is the current question
+      // Enable next button
       updateNavigationButtons();
+
+      // Track event
+      trackEvent('quiz_answer_selected', {
+        question: e.target.name,
+        answer: e.target.value,
+        question_number: currentQuestion
+      });
     }
   });
 }
 
-// Update navigation buttons
+// Add this function to validate current question
+function validateCurrentQuestion() {
+  const currentQuestionEl = document.querySelector(`.question[data-question="${currentQuestion}"]`);
+  return currentQuestionEl.querySelector('input[type="radio"]:checked') !== null;
+}
+
+// Replace the nextQuestion function
+function nextQuestion() {
+  if (currentQuestion < totalQuestions) {
+    // Validate if current question is answered
+    if (!validateCurrentQuestion()) {
+      alert('Please select an answer before proceeding.');
+      return;
+    }
+
+    // Hide current question
+    document.querySelector(`.question[data-question="${currentQuestion}"]`)
+      .classList.remove('active');
+
+    // Show next question
+    currentQuestion++;
+    document.querySelector(`.question[data-question="${currentQuestion}"]`)
+      .classList.add('active');
+
+    updateProgressBar();
+    updateQuestionCounter();
+    updateNavigationButtons();
+  } else {
+    submitQuiz();
+  }
+}
+
+// Replace the updateNavigationButtons function
 function updateNavigationButtons() {
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
@@ -393,39 +429,21 @@ function updateNavigationButtons() {
   if (!prevBtn || !nextBtn) return;
 
   // Show/hide previous button
-  if (currentQuestion > 1) {
-    prevBtn.style.display = 'inline-flex';
-  } else {
-    prevBtn.style.display = 'none';
-  }
+  prevBtn.style.display = currentQuestion > 1 ? 'inline-flex' : 'none';
 
   // Check if current question is answered
   const currentAnswer = quizAnswers[`q${currentQuestion}`];
 
   if (currentQuestion === totalQuestions) {
     // Last question - show submit button
-    if (currentAnswer) {
-      nextBtn.innerHTML = '<i class="fas fa-check"></i> Get Results';
-      nextBtn.disabled = false;
-    } else {
-      nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
-      nextBtn.disabled = true;
-    }
+    nextBtn.innerHTML = currentAnswer ?
+      '<i class="fas fa-check"></i> Get Results' :
+      'Next <i class="fas fa-arrow-right"></i>';
+    nextBtn.disabled = !currentAnswer;
   } else {
     // Regular next button
     nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
     nextBtn.disabled = !currentAnswer;
-  }
-}
-
-// Move to next question
-function nextQuestion() {
-  if (currentQuestion < totalQuestions) {
-    currentQuestion++;
-    showQuestion(currentQuestion);
-  } else {
-    // Submit quiz and show results
-    submitQuiz();
   }
 }
 
@@ -751,20 +769,69 @@ function bookConsultation() {
 // Mobile menu functionality
 function setupMobileMenu() {
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-  const navLinks = document.querySelector('.nav-links');
 
-  if (mobileMenuBtn && navLinks) {
+  if (mobileMenuBtn) {
+    // Remove any existing overlay
+    const existingOverlay = document.querySelector('.mobile-menu-overlay');
+    if (existingOverlay) {
+      existingOverlay.remove();
+    }
+
+    // Create mobile menu overlay
+    const mobileOverlay = document.createElement('div');
+    mobileOverlay.className = 'mobile-menu-overlay';
+    mobileOverlay.innerHTML = `
+            <div class="mobile-menu-content">
+                <button class="mobile-menu-close">
+                    <i class="fas fa-times"></i>
+                </button>
+                <nav class="mobile-nav">
+                    <a href="index.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <a href="quiz.html">
+                        <i class="fas fa-clipboard-list"></i> Take Quiz
+                    </a>
+                    <a href="consultation.html">
+                        <i class="fas fa-calendar-check"></i> Book Consultation
+                    </a>
+                    <a href="contact.html">
+                        <i class="fas fa-envelope"></i> Contact Us
+                    </a>
+                </nav>
+            </div>
+        `;
+
+    document.body.appendChild(mobileOverlay);
+
+    // Toggle menu
     mobileMenuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      mobileMenuBtn.classList.toggle('active');
+      mobileOverlay.classList.toggle('active');
+      document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : '';
     });
 
-    // Close menu when clicking on a link
-    navLinks.addEventListener('click', (e) => {
-      if (e.target.tagName === 'A') {
-        navLinks.classList.remove('active');
-        mobileMenuBtn.classList.remove('active');
+    // Close menu button
+    const closeBtn = mobileOverlay.querySelector('.mobile-menu-close');
+    closeBtn.addEventListener('click', () => {
+      mobileOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    // Close when clicking outside menu
+    mobileOverlay.addEventListener('click', (e) => {
+      if (e.target === mobileOverlay) {
+        mobileOverlay.classList.remove('active');
+        document.body.style.overflow = '';
       }
+    });
+
+    // Close when clicking links
+    const menuLinks = mobileOverlay.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
     });
   }
 }
@@ -941,17 +1008,606 @@ document.addEventListener('DOMContentLoaded', function () {
   animateElements.forEach(el => observer.observe(el));
 });
 
-// Performance monitoring
-const perfObserver = new PerformanceObserver((list) => {
-  for (const entry of list.getEntries()) {
-    if (entry.entryType === 'navigation') {
-      console.log('Page load time:', entry.loadEventEnd - entry.loadEventStart);
-    }
+// === CONSULTATION AND CONTACT FORM FUNCTIONALITY ===
+
+// Initialize page-specific functionality
+document.addEventListener('DOMContentLoaded', function () {
+  // Check if we're on consultation page
+  if (document.getElementById('consultation-form')) {
+    initializeConsultationPage();
   }
+
+  // Check if we're on contact page
+  if (document.getElementById('contact-form')) {
+    initializeContactPage();
+  }
+
+  // Initialize FAQ functionality
+  initializeFAQ();
+
+  // Set minimum date for date inputs
+  setMinimumDate();
 });
 
-try {
-  perfObserver.observe({ entryTypes: ['navigation'] });
-} catch (e) {
-  // PerformanceObserver not supported
+// Initialize consultation page
+function initializeConsultationPage() {
+  const consultationForm = document.getElementById('consultation-form');
+
+  if (consultationForm) {
+    consultationForm.addEventListener('submit', handleConsultationSubmit);
+  }
+
+  // Set default package if coming from package selection
+  const urlParams = new URLSearchParams(window.location.search);
+  const selectedPackage = urlParams.get('package');
+  if (selectedPackage) {
+    selectPackage(selectedPackage);
+  }
 }
+
+// Initialize contact page
+function initializeContactPage() {
+  const contactForm = document.getElementById('contact-form');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', handleContactSubmit);
+  }
+}
+
+// Select consultation package
+function selectPackage(packageType) {
+  const packageSelect = document.getElementById('package');
+  if (packageSelect) {
+    packageSelect.value = packageType;
+
+    // Scroll to booking form
+    const bookingForm = document.getElementById('booking-form');
+    if (bookingForm) {
+      bookingForm.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Highlight selected package
+    highlightSelectedPackage(packageType);
+  }
+}
+
+// Highlight selected package
+function highlightSelectedPackage(packageType) {
+  // Remove previous highlights
+  const packageCards = document.querySelectorAll('.package-card');
+  packageCards.forEach(card => {
+    card.classList.remove('selected');
+  });
+
+  // Add highlight to selected package
+  const packageMap = {
+    'basic': 0,
+    'comprehensive': 1,
+    'premium': 2
+  };
+
+  const selectedIndex = packageMap[packageType];
+  if (selectedIndex !== undefined && packageCards[selectedIndex]) {
+    packageCards[selectedIndex].classList.add('selected');
+  }
+}
+
+// Handle consultation form submission
+function handleConsultationSubmit(e) {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+  const consultationData = Object.fromEntries(formData);
+
+  // Validate form
+  if (!validateConsultationForm(consultationData)) {
+    return;
+  }
+
+  // Show loading state
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  const originalText = submitBtn.innerHTML;
+  submitBtn.innerHTML = '<span class="loading"></span> Booking...';
+  submitBtn.disabled = true;
+
+  // Simulate API call
+  setTimeout(() => {
+    // Store booking data
+    storeBookingData(consultationData);
+
+    // Show success message
+    showBookingConfirmation(consultationData);
+
+    // Reset button
+    submitBtn.innerHTML = originalText;
+    submitBtn.disabled = false;
+
+    // Track event
+    trackEvent('consultation_booked', {
+      package: consultationData.package,
+      consultation_type: consultationData.consultationType
+    });
+
+  }, 2000);
+}
+
+// Handle contact form submission
+function handleContactSubmit(e) {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+  const contactData = Object.fromEntries(formData);
+
+  // Validate form
+  if (!validateContactForm(contactData)) {
+    return;
+  }
+
+  // Show loading state
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  const originalText = submitBtn.innerHTML;
+  submitBtn.innerHTML = '<span class="loading"></span> Sending...';
+  submitBtn.disabled = true;
+
+  // Simulate API call
+  setTimeout(() => {
+    // Show success message
+    showContactConfirmation(contactData);
+
+    // Reset form
+    e.target.reset();
+
+    // Reset button
+    submitBtn.innerHTML = originalText;
+    submitBtn.disabled = false;
+
+    // Track event
+    trackEvent('contact_form_submitted', {
+      inquiry_type: contactData.inquiryType,
+      priority: contactData.priority
+    });
+
+  }, 1500);
+}
+
+// Validate consultation form
+function validateConsultationForm(data) {
+  const required = ['fullName', 'email', 'phone', 'education', 'package', 'consultationType', 'preferredDate', 'preferredTime'];
+
+  for (const field of required) {
+    if (!data[field] || data[field].trim() === '') {
+      alert(`Please fill in the ${field.replace(/([A-Z])/g, ' $1').toLowerCase()} field.`);
+      document.getElementById(field)?.focus();
+      return false;
+    }
+  }
+
+  // Validate email
+  if (!isValidEmail(data.email)) {
+    alert('Please enter a valid email address.');
+    document.getElementById('email')?.focus();
+    return false;
+  }
+
+  // Validate phone
+  if (!isValidPhone(data.phone)) {
+    alert('Please enter a valid phone number.');
+    document.getElementById('phone')?.focus();
+    return false;
+  }
+
+  // Validate date
+  if (!isValidDate(data.preferredDate)) {
+    alert('Please select a valid date (today or future).');
+    document.getElementById('preferredDate')?.focus();
+    return false;
+  }
+
+  return true;
+}
+
+// Validate contact form
+function validateContactForm(data) {
+  const required = ['firstName', 'lastName', 'contactEmail', 'inquiryType', 'subject', 'message', 'privacy'];
+
+  for (const field of required) {
+    if (!data[field] || data[field].trim() === '') {
+      if (field === 'privacy') {
+        alert('Please agree to the Privacy Policy and Terms of Service.');
+      } else {
+        alert(`Please fill in the ${field.replace(/([A-Z])/g, ' $1').toLowerCase()} field.`);
+        document.getElementById(field)?.focus();
+      }
+      return false;
+    }
+  }
+
+  // Validate email
+  if (!isValidEmail(data.contactEmail)) {
+    alert('Please enter a valid email address.');
+    document.getElementById('contactEmail')?.focus();
+    return false;
+  }
+
+  return true;
+}
+
+// Validation helper functions
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+function isValidPhone(phone) {
+  const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+  return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+}
+
+function isValidDate(dateString) {
+  const selectedDate = new Date(dateString);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return selectedDate >= today;
+}
+
+// Store booking data
+function storeBookingData(data) {
+  const bookingId = 'BK' + Date.now();
+  const bookingData = {
+    ...data,
+    bookingId,
+    bookingDate: new Date().toISOString(),
+    status: 'pending'
+  };
+
+  // In a real app, this would be sent to a server
+  window.currentBooking = bookingData;
+
+  console.log('Booking stored:', bookingData);
+}
+
+// Show booking confirmation
+function showBookingConfirmation(data) {
+  const bookingId = window.currentBooking?.bookingId || 'BK' + Date.now();
+
+  const message = `
+        🎉 Consultation Booked Successfully!
+        
+        Booking ID: ${bookingId}
+        Package: ${getPackageName(data.package)}
+        Date: ${formatDate(data.preferredDate)}
+        Time: ${data.preferredTime}
+        
+        We'll contact you within 24 hours to confirm your appointment.
+        
+        Thank you for choosing Career Guider! 🚀
+    `;
+
+  alert(message);
+
+  // Optionally redirect to a confirmation page
+  // window.location.href = 'booking-confirmation.html?id=' + bookingId;
+}
+
+// Show contact confirmation
+function showContactConfirmation(data) {
+  const ticketId = 'TK' + Date.now();
+
+  const message = `
+        ✅ Message Sent Successfully!
+        
+        Ticket ID: ${ticketId}
+        Subject: ${data.subject}
+        Priority: ${data.priority}
+        
+        We'll respond to your inquiry within 24 hours.
+        
+        Thank you for contacting Career Guider! 📧
+    `;
+
+  alert(message);
+}
+
+// Helper function to get package name
+function getPackageName(packageValue) {
+  const packageNames = {
+    'basic': 'Basic Session (₹999)',
+    'comprehensive': 'Comprehensive Session (₹1,999)',
+    'premium': 'Premium Mentoring (₹4,999)'
+  };
+  return packageNames[packageValue] || packageValue;
+}
+
+// Format date helper
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-IN', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+
+// Set minimum date for date inputs
+function setMinimumDate() {
+  const dateInputs = document.querySelectorAll('input[type="date"]');
+  const today = new Date().toISOString().split('T')[0];
+
+  dateInputs.forEach(input => {
+    input.min = today;
+  });
+}
+
+// Initialize FAQ functionality
+function initializeFAQ() {
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+
+    question.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+
+      // Close all FAQ items
+      faqItems.forEach(faq => {
+        faq.classList.remove('active');
+      });
+
+      // Open clicked item if it wasn't active
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    });
+  });
+}
+
+// Open map functionality
+function openMap(location) {
+  const coordinates = {
+    'delhi': '28.6139,77.2090',
+    'mumbai': '19.0760,72.8777',
+    'bangalore': '12.9716,77.5946'
+  };
+
+  const addresses = {
+    'delhi': 'A-123, Connaught Place, New Delhi',
+    'mumbai': 'B-456, Bandra Kurla Complex, Mumbai',
+    'bangalore': 'C-789, Electronic City, Bangalore'
+  };
+
+  const coord = coordinates[location];
+  const address = addresses[location];
+
+  if (coord) {
+    // Try to open in Google Maps app first, fallback to web
+    const mobileUrl = `https://maps.google.com/maps?q=${coord}&z=15`;
+    const webUrl = `https://www.google.com/maps/search/${encodeURIComponent(address)}/@${coord},15z`;
+
+    // Check if on mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    window.open(isMobile ? mobileUrl : webUrl, '_blank');
+
+    // Track event
+    trackEvent('map_opened', { location });
+  }
+}
+
+// Enhanced mobile menu with consultation and contact links
+function setupMobileMenu() {
+  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (mobileMenuBtn && navLinks) {
+    // Create mobile menu overlay
+    const mobileOverlay = document.createElement('div');
+    mobileOverlay.className = 'mobile-menu-overlay';
+    mobileOverlay.innerHTML = `
+            <div class="mobile-menu-content">
+                <button class="mobile-menu-close">
+                    <i class="fas fa-times"></i>
+                </button>
+                <nav class="mobile-nav">
+                    <a href="index.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <a href="quiz.html">
+                        <i class="fas fa-clipboard-list"></i> Take Quiz
+                    </a>
+                    <a href="consultation.html">
+                        <i class="fas fa-calendar-check"></i> Book Consultation
+                    </a>
+                    <a href="contact.html">
+                        <i class="fas fa-envelope"></i> Contact Us
+                    </a>
+                    <a href="results.html">
+                        <i class="fas fa-chart-bar"></i> Sample Results
+                    </a>
+                </nav>
+                <div class="mobile-menu-footer">
+                    <p>Career Guider</p>
+                    <p>Find Your Perfect Path</p>
+                </div>
+            </div>
+        `;
+
+    document.body.appendChild(mobileOverlay);
+
+    // Mobile menu toggle
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    // Close mobile menu
+    const closeBtn = mobileOverlay.querySelector('.mobile-menu-close');
+    closeBtn.addEventListener('click', () => {
+      mobileOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    // Close when clicking overlay
+    mobileOverlay.addEventListener('click', (e) => {
+      if (e.target === mobileOverlay) {
+        mobileOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close when clicking nav links
+    const mobileNavLinks = mobileOverlay.querySelectorAll('.mobile-nav a');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+}
+
+// Enhanced form validation with real-time feedback
+document.addEventListener('DOMContentLoaded', function () {
+  // Add real-time validation to form inputs
+  const formInputs = document.querySelectorAll('input, select, textarea');
+
+  formInputs.forEach(input => {
+    input.addEventListener('blur', validateField);
+    input.addEventListener('input', clearFieldError);
+  });
+});
+
+function validateField(e) {
+  const field = e.target;
+  const value = field.value.trim();
+
+  // Remove existing error styling
+  field.classList.remove('error');
+
+  // Check if required field is empty
+  if (field.hasAttribute('required') && !value) {
+    showFieldError(field, 'This field is required');
+    return;
+  }
+
+  // Validate email fields
+  if (field.type === 'email' && value && !isValidEmail(value)) {
+    showFieldError(field, 'Please enter a valid email address');
+    return;
+  }
+
+  // Validate phone fields
+  if (field.type === 'tel' && value && !isValidPhone(value)) {
+    showFieldError(field, 'Please enter a valid phone number');
+    return;
+  }
+
+  // Validate date fields
+  if (field.type === 'date' && value && !isValidDate(value)) {
+    showFieldError(field, 'Please select a date from today onwards');
+    return;
+  }
+}
+
+function showFieldError(field, message) {
+  field.classList.add('error');
+
+  // Remove existing error message
+  const existingError = field.parentNode.querySelector('.field-error');
+  if (existingError) {
+    existingError.remove();
+  }
+
+  // Add error message
+  const errorDiv = document.createElement('div');
+  errorDiv.className = 'field-error';
+  errorDiv.textContent = message;
+  field.parentNode.appendChild(errorDiv);
+}
+
+function clearFieldError(e) {
+  const field = e.target;
+  field.classList.remove('error');
+
+  const errorMessage = field.parentNode.querySelector('.field-error');
+  if (errorMessage) {
+    errorMessage.remove();
+  }
+}
+
+// Newsletter signup functionality
+function subscribeNewsletter(email) {
+  if (!email || !isValidEmail(email)) {
+    alert('Please enter a valid email address');
+    return;
+  }
+
+  // Simulate newsletter subscription
+  setTimeout(() => {
+    alert('Thank you for subscribing to our newsletter! 📧');
+    trackEvent('newsletter_subscribed', { email });
+  }, 500);
+}
+
+// Enhanced package selection with animation
+function selectPackage(packageType) {
+  const packageSelect = document.getElementById('package');
+  if (packageSelect) {
+    packageSelect.value = packageType;
+
+    // Animate scroll to booking form
+    const bookingForm = document.getElementById('booking-form');
+    if (bookingForm) {
+      bookingForm.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+
+      // Add highlight animation
+      setTimeout(() => {
+        const formContainer = bookingForm.querySelector('.form-container');
+        if (formContainer) {
+          formContainer.style.transform = 'scale(1.02)';
+          formContainer.style.boxShadow = '0 15px 50px rgba(37, 99, 235, 0.2)';
+
+          setTimeout(() => {
+            formContainer.style.transform = '';
+            formContainer.style.boxShadow = '';
+          }, 1000);
+        }
+      }, 500);
+    }
+
+    // Update package cards styling
+    highlightSelectedPackage(packageType);
+
+    // Track package selection
+    trackEvent('package_selected', { package: packageType });
+  }
+}
+
+
+// session booking pop up message:
+// Add this after your existing code
+document.addEventListener('DOMContentLoaded', function () {
+  const consultationForm = document.getElementById('consultation-form');
+  if (consultationForm) {
+    consultationForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(consultationForm);
+      const data = Object.fromEntries(formData);
+
+      // Show confirmation message
+      alert(`Thank you for booking a consultation!\n\n` +
+        `Name: ${data.firstName} ${data.lastName}\n` +
+        `Email: ${data.email}\n` +
+        `Consultation Type: ${data.consultationType}\n` +
+        `Preferred Date: ${data.preferredDate}\n\n` +
+        `We will contact you within 24 hours to confirm your appointment.`);
+
+      // Reset form
+      consultationForm.reset();
+    });
+  }
+});

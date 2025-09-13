@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Career Guider</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-compass"></i>
+                Career Guider
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quiz.html">Take Quiz</a></li>
+                <li><a href="consultation.html">Consultation</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Contact Header -->
+    <section class="contact-header">
+        <div class="container">
+            <div class="header-content">
+                <h1>Get In Touch With Us</h1>
+                <p>Have questions about your career path? Need help with our services? We're here to help you every step
+                    of the way.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="contact-info-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Visit Our Offices</h3>
+                    <div class="office-locations">
+                        <div class="location">
+                            <h4>Delhi Headquarters</h4>
+                            <p>A-123, Connaught Place<br>New Delhi - 110001<br>India</p>
+                        </div>
+                        <div class="location">
+                            <h4>Mumbai Office</h4>
+                            <p>B-456, Bandra Kurla Complex<br>Mumbai - 400051<br>Maharashtra</p>
+                        </div>
+                        <div class="location">
+                            <h4>Bangalore Office</h4>
+                            <p>C-789, Electronic City<br>Bangalore - 560100<br>Karnataka</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Call Us</h3>
+                    <div class="contact-details">
+                        <p><strong>Main Helpline:</strong><br>+91 9876543210</p>
+                        <p><strong>Consultation Booking:</strong><br>+91 8765432109</p>
+                        <p><strong>Technical Support:</strong><br>+91 7654321098</p>
+                        <p><strong>WhatsApp:</strong><br>+91 9876543210</p>
+                        <p class="timing"><i class="fas fa-clock"></i> Available: Mon-Sat, 9 AM - 8 PM</p>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Us</h3>
+                    <div class="contact-details">
+                        <p><strong>General Inquiries:</strong><br>info@careerguider.com</p>
+                        <p><strong>Consultation Booking:</strong><br>booking@careerguider.com</p>
+                        <p><strong>Technical Support:</strong><br>support@careerguider.com</p>
+                        <p><strong>Partnerships:</strong><br>partnerships@careerguider.com</p>
+                        <p class="timing"><i class="fas fa-reply"></i> Response within 24 hours</p>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Connect Online</h3>
+                    <div class="social-contact">
+                        <a href="#" class="social-item">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="#" class="social-item">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="#" class="social-item">
+                            <i class="fab fa-linkedin-in"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="#" class="social-item">
+                            <i class="fab fa-youtube"></i>
+                            <span>YouTube</span>
+                        </a>
+                        <a href="#" class="social-item">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Send Us a Message</h2>
+                    <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+                </div>
+
+                <form id="contact-form" class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactEmail">Email Address *</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactPhone">Phone Number</label>
+                            <input type="tel" id="contactPhone" name="contactPhone">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="inquiryType">Type of Inquiry *</label>
+                            <select id="inquiryType" name="inquiryType" required>
+                                <option value="">Select Inquiry Type</option>
+                                <option value="general">General Information</option>
+                                <option value="consultation">Consultation Booking</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="partnership">Partnership Opportunities</option>
+                                <option value="feedback">Feedback & Suggestions</option>
+                                <option value="media">Media & Press</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="priority">Priority Level</label>
+                            <select id="priority" name="priority">
+                                <option value="normal">Normal</option>
+                                <option value="urgent">Urgent</option>
+                                <option value="low">Low Priority</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" placeholder="Brief description of your inquiry"
+                            required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="6"
+                            placeholder="Please provide details about your inquiry, question, or feedback..."
+                            required></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <span class="checkmark"></span>
+                            Subscribe to our newsletter for career tips and updates
+                        </label>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="privacy" name="privacy" required>
+                            <span class="checkmark"></span>
+                            I agree to the <a href="#" target="_blank">Privacy Policy</a> and <a href="#"
+                                target="_blank">Terms of Service</a>
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                            <i class="fas fa-undo"></i>
+                            Clear Form
+                        </button>
+                    </div>
+
+                    <div class="form-note">
+                        <p><i class="fas fa-shield-alt"></i> Your information is secure and will be used only to respond
+                            to your inquiry.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2>Find Us on the Map</h2>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <div class="map-content">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Interactive Map</h3>
+                        <p>Visit our offices in Delhi, Mumbai, and Bangalore</p>
+                        <div class="map-buttons">
+                            <button class="btn btn-primary" onclick="openMap('delhi')">
+                                <i class="fas fa-map-marker-alt"></i> Delhi Office
+                            </button>
+                            <button class="btn btn-primary" onclick="openMap('mumbai')">
+                                <i class="fas fa-map-marker-alt"></i> Mumbai Office
+                            </button>
+                            <button class="btn btn-primary" onclick="openMap('bangalore')">
+                                <i class="fas fa-map-marker-alt"></i> Bangalore Office
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="contact-faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How quickly do you respond to inquiries?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We respond to all inquiries within 24 hours during business days. Urgent matters are
+                            typically addressed within 2-4 hours.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Can I visit your office without an appointment?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>While walk-ins are welcome, we recommend scheduling an appointment to ensure our counselors
+                            are available and can dedicate proper time to your needs.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Do you provide services outside of India?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Currently, our primary focus is on Indian students and the Indian education system. However,
+                            we do offer online consultations for international students interested in Indian
+                            institutions.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What languages do you support?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We provide services in Hindi, English, Marathi, Tamil, Telugu, and Bengali. Our counselors
+                            can accommodate various regional languages based on availability.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Is there a charge for initial consultations?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a free 15-minute initial consultation call to understand your needs and explain our
+                            services. Detailed consultations are part of our paid packages.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How do I track my inquiry status?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>After submitting your inquiry, you'll receive a confirmation email with a ticket number. You
+                            can use this to track your inquiry status by calling our helpline.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Hours -->
+    <section class="business-hours">
+        <div class="container">
+            <div class="hours-container">
+                <div class="hours-header">
+                    <h2><i class="fas fa-clock"></i> Business Hours</h2>
+                    <p>We're here to help during these hours</p>
+                </div>
+                <div class="hours-grid">
+                    <div class="hours-card">
+                        <h3>Office Hours</h3>
+                        <div class="hours-list">
+                            <div class="hours-item">
+                                <span class="day">Monday - Friday</span>
+                                <span class="time">9:00 AM - 7:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="day">Saturday</span>
+                                <span class="time">10:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="day">Sunday</span>
+                                <span class="time">Closed</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hours-card">
+                        <h3>Phone Support</h3>
+                        <div class="hours-list">
+                            <div class="hours-item">
+                                <span class="day">Monday - Friday</span>
+                                <span class="time">8:00 AM - 8:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="day">Saturday</span>
+                                <span class="time">9:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="day">Sunday</span>
+                                <span class="time">10:00 AM - 4:00 PM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hours-card">
+                        <h3>Online Consultations</h3>
+                        <div class="hours-list">
+                            <div class="hours-item">
+                                <span class="day">Monday - Friday</span>
+                                <span class="time">9:00 AM - 9:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="day">Weekend</span>
+                                <span class="time">10:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="day">Emergency</span>
+                                <span class="time">24/7 Email Support</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Contact -->
+    <section class="emergency-contact">
+        <div class="container">
+            <div class="emergency-banner">
+                <div class="emergency-content">
+                    <div class="emergency-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="emergency-text">
+                        <h3>Need Immediate Help?</h3>
+                        <p>For urgent career guidance or crisis situations, our emergency helpline is available 24/7</p>
+                    </div>
+                    <div class="emergency-actions">
+                        <a href="tel:+919876543210" class="btn btn-primary">
+                            <i class="fas fa-phone"></i>
+                            Call Emergency Line
+                        </a>
+                        <a href="mailto:emergency@careerguider.com" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i>
+                            Emergency Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2>Meet Our Team</h2>
+            <p class="section-subtitle">Our experienced counselors and support team are here to guide you</p>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="team-info">
+                        <h3>Dr. Rajesh Kumar</h3>
+                        <p class="team-role">Chief Career Counselor</p>
+                        <p class="team-desc">15+ years experience in career guidance and educational psychology</p>
+                        <div class="team-contact">
+                            <a href="mailto:rajesh@careerguider.com"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-image">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="team-info">
+                        <h3>Ms. Priya Singh</h3>
+                        <p class="team-role">Senior Counselor</p>
+                        <p class="team-desc">Specializes in engineering and technology career paths</p>
+                        <div class="team-contact">
+                            <a href="mailto:priya@careerguider.com"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-image">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="team-info">
+                        <h3>Dr. Anita Sharma</h3>
+                        <p class="team-role">Medical Career Advisor</p>
+                        <p class="team-desc">Former medical professional, expert in healthcare career guidance</p>
+                        <div class="team-contact">
+                            <a href="mailto:anita@careerguider.com"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-image">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <div class="team-info">
+                        <h3>Mr. Amit Patel</h3>
+                        <p class="team-role">Technical Support Lead</p>
+                        <p class="team-desc">Ensures smooth technical experience for all our users</p>
+                        <div class="team-contact">
+                            <a href="mailto:support@careerguider.com"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Career Guider</h3>
+                    <p>Empowering students to make informed career decisions through comprehensive assessments and
+                        expert guidance.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="quiz.html">Career Quiz</a>
+                    <a href="consultation.html">Book Consultation</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#">Career Assessment</a>
+                    <a href="#">Personal Counseling</a>
+                    <a href="#">College Guidance</a>
+                    <a href="#">Skill Development</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-envelope"></i> info@careerguider.com</p>
+                    <p><i class="fas fa-phone"></i> +91 98299159099</p>
+                    <p><i class="fas fa-map-marker-alt"></i>
+                        Kanpur, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Career Guider. All rights reserved. </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
